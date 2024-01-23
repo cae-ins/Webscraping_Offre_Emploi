@@ -1,7 +1,7 @@
 
 GIT
 Email : abdoulaye.doumbia19@inphb.ci
-password : Abdoullah05@
+password 
 username : doumbia0525
 
 C:\Program Files\Git
