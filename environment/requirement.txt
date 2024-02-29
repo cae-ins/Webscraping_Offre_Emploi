@@ -9,3 +9,5 @@ jupyter notebook
 4. requests : Bibliothèque pour effectuer des requêtes HTTP.
 5. BeautifulSoup : Bibliothèque pour extraire des informations à partir de documents HTML ou XML.
 6. selenium : Utilisé pour l'automatisation du navigateur, ici pour extraire des informations à partir de pages web dynamiques.
+
+/OneDrive/Bureau/INS_DATA/Webscraping_Offre_Emploi
