@@ -1,0 +1,6 @@
+Scraper chaque jour à une heure precise ;
+Syntaxe ;
+Indicateur géographique ; Nombre d'offres disponibles ;
+Statistique sur les durées de publications des offres ;
+Matrice d'indicateurs à envoyer à Prof
+Note de diffusion à préparer (une ou deux pages).
