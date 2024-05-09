@@ -14,14 +14,14 @@ import os
 from send_mail_offre import send_mail_success_offre, send_mail_error_offre
 from script_scrapping_Novojob import scrap_novojob
 from script_scrapping_Educarriere import emploi_educarriere
-from script_scrapping_Alerte_emploi import collect_job_info, scrape_additional_details, alerte_emploi
+from script_scrapping_Alerte_emploi import alerteemploi
 from script_scrapping_Emploi_ci import emploi_ci
 from script_scrapping_Projobivoire import projobivoire
 from script_scrapping_Mondiale_df import mondiale_ci
 from script_scrapping_Rmo_jobcenter_df import rmo_jobcenter
 from script_scrapping_Talent_ci import talent_ci
 from script_scrapping_Yop_l_frii import extract_job_information, extract_job_info_from_urls, yop_l_frii
-
+from script_scrapping_agenceemploi import agence_emploi_jeunes # type: ignore
 
 from selenium import webdriver
 #from selenium.webdriver.firefox.service import Service
@@ -79,9 +79,23 @@ except Exception as e:
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Alerte_emploi
+equivalences = {
+'Job Title': 'INTITULE_DU_POSTE',
+'Date Posted': 'DATE_DE_DEBUT_DE_L_OFFRE',
+'Description': 'Description',
+'URL': 'URL',
+'Post URL': 'Post URL',
+    }
+    # Fonction pour renommer les colonnes du DataFrame en conservant les colonnes sans équivalence
+def renommer_colonnes(df, equivalences):
+    colonnes_renommees = {ancien_nom: nouvel_nom for ancien_nom, nouvel_nom in equivalences.items() if nouvel_nom is not None}
+    df_renomme = df.rename(columns=colonnes_renommees)
+    return df_renomme
+    
 try:
 
-    alerte_emploi_df = alerte_emploi()
+    alerte_emploi_df = alerteemploi()
+    alerte_emploi_df=renommer_colonnes(alerte_emploi_df, equivalences)
     alerte_emploi_df.reset_index(drop=True, inplace=True)
     chemin_fichier_alerte_emploi_df = os.path.join('C:/Users/Dell/Documents/UB/IPC/CODE_IPC/COLLECTE_JOURNALIERE_offre_emploi','Data_Scrapping_emploi_df_'+datetime.now().strftime('%d%m%Y')+'.xlsx')
     alerte_emploi_df.to_excel(chemin_fichier_alerte_emploi_df, index=False)
@@ -316,7 +330,29 @@ except Exception as e:
     send_mail_error_offre(["doumbiaabdoulaye0525@gmail.com"], ["j.migone@stat.plan.gouv.ci"])
     #send_sms(f"Il y a une erreur dans le code principal", e )
 
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------   
 
+# Agence_emploi_jeunes
+try:
+
+# Appel de la fonction principale
+#Exportation de la donnée Finale
+    agenceemploi_jeunes_df = agence_emploi_jeunes()
+
+    
+    chemin_fichier_df_educarriere = os.path.join('C:/Users/Dell/Documents/UB/IPC/CODE_IPC/COLLECTE_JOURNALIERE_offre_emploi','Data_Scrapping_df_educarriere_'+datetime.now().strftime('%d%m%Y')+'.xlsx')
+    agenceemploi_jeunes_df.to_excel(chemin_fichier_df_educarriere, index=False)
+
+
+    send_mail_success_offre(["abdoulayebakayoko265@gmail.com", "doumbiaabdoulaye0525@gmail.com"], ["j.migone@stat.plan.gouv.ci","moussakr@gmail.com"])
+    #send_sms(f"le fichier {'Data_Scrapping_offre_'+datetime.now().strftime('%d%m%Y')+'.xlsx'} a été deposé avec succès.")
+
+except Exception as e:
+
+    print("Il y a une erreur dans le code principal:", e)
+
+    send_mail_error_offre(["doumbiaabdoulaye0525@gmail.com"], ["j.migone@stat.plan.gouv.ci"])
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------   
 # Yop_l_frii  
