@@ -11,6 +11,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import numpy as np
 import os
 #Importation du module d'envoi de mail
+from script_scrapping_agenceemploi import agence_emploi_jeunes # type: ignore
 from send_mail_offre import send_mail_success_offre, send_mail_error_offre
 from script_scrapping_Novojob import scrap_novojob
 from script_scrapping_Educarriere import emploi_educarriere
@@ -21,7 +22,7 @@ from script_scrapping_Mondiale_df import mondiale_ci
 from script_scrapping_Rmo_jobcenter_df import rmo_jobcenter
 from script_scrapping_Talent_ci import talent_ci
 from script_scrapping_Yop_l_frii import extract_job_information, extract_job_info_from_urls, yop_l_frii
-from script_scrapping_agenceemploi import agence_emploi_jeunes # type: ignore
+from script_fonction_doublon import preprocess_text, doublon
 
 from selenium import webdriver
 #from selenium.webdriver.firefox.service import Service
@@ -341,8 +342,8 @@ try:
     agenceemploi_jeunes_df = agence_emploi_jeunes()
 
     
-    chemin_fichier_df_educarriere = os.path.join('C:/Users/Dell/Documents/UB/IPC/CODE_IPC/COLLECTE_JOURNALIERE_offre_emploi','Data_Scrapping_df_educarriere_'+datetime.now().strftime('%d%m%Y')+'.xlsx')
-    agenceemploi_jeunes_df.to_excel(chemin_fichier_df_educarriere, index=False)
+    chemin_fichier_agenceemploi_jeunes_df = os.path.join('C:/Users/Dell/Documents/UB/IPC/CODE_IPC/COLLECTE_JOURNALIERE_offre_emploi','Data_Scrapping_agenceemploi_jeunes_df_'+datetime.now().strftime('%d%m%Y')+'.xlsx')
+    agenceemploi_jeunes_df.to_excel(chemin_fichier_agenceemploi_jeunes_df, index=False)
 
 
     send_mail_success_offre(["abdoulayebakayoko265@gmail.com", "doumbiaabdoulaye0525@gmail.com"], ["j.migone@stat.plan.gouv.ci","moussakr@gmail.com"])
@@ -432,11 +433,31 @@ try:
 #Exportation de la donnée Finale
 
 
-    df_final = pd.concat([df_novojob, df_educarriere,df_projobivoire,emploi_df,alerte_emploi_df,mondiale_df,rmo_jobcenter_df,df_talent_ci,yop_l_frii_total], axis=0, ignore_index=True)
+    df_final = pd.concat([df_novojob, df_educarriere,df_projobivoire,emploi_df,alerte_emploi_df,mondiale_df,rmo_jobcenter_df,df_talent_ci,yop_l_frii_total,agenceemploi_jeunes_df], axis=0, ignore_index=True)
     chemin_fichier_collecte = os.path.join('C:/Users/Dell/Documents/UB/IPC/CODE_IPC/COLLECTE_JOURNALIERE_offre_emploi','Data_Scrapping_offre_'+datetime.now().strftime('%d%m%Y')+'.xlsx')
     df_final.to_excel(chemin_fichier_collecte, index=False)
-
     
+
+    send_mail_success_offre(["abdoulayebakayoko265@gmail.com", "doumbiaabdoulaye0525@gmail.com"], ["j.migone@stat.plan.gouv.ci","moussakr@gmail.com"])
+    #send_sms(f"le fichier {'Data_Scrapping_offre_'+datetime.now().strftime('%d%m%Y')+'.xlsx'} a été deposé avec succès.")
+
+except Exception as e:
+
+    print("Il y a une erreur dans le code principal:", e)
+
+    send_mail_error_offre(["doumbiaabdoulaye0525@gmail.com"], ["j.migone@stat.plan.gouv.ci"])
+    #send_sms(f"Il y a une erreur dans le code principal", e )
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------       
+
+try:
+
+# Appel de la fonction principale
+#Exportation de la donnée Finale
+ 
+    doublon = doublon(df_final)
+    chemin_fichier_collecte1 = os.path.join('C:/Users/Dell/Documents/UB/IPC/CODE_IPC/COLLECTE_JOURNALIERE_offre_emploi','Data_Scrapping_doublon_'+datetime.now().strftime('%d%m%Y')+'.xlsx')
+    doublon.to_excel(chemin_fichier_collecte1, index=False)
 
     send_mail_success_offre(["abdoulayebakayoko265@gmail.com", "doumbiaabdoulaye0525@gmail.com"], ["j.migone@stat.plan.gouv.ci","moussakr@gmail.com"])
     #send_sms(f"le fichier {'Data_Scrapping_offre_'+datetime.now().strftime('%d%m%Y')+'.xlsx'} a été deposé avec succès.")

@@ -1,4 +1,4 @@
-Pa
+
 pip install time re pandas requests beautifulsoup4 selenium
 pip install jupyter
 jupyter notebook
@@ -11,3 +11,33 @@ jupyter notebook
 6. selenium : Utilisé pour l'automatisation du navigateur, ici pour extraire des informations à partir de pages web dynamiques.
 
 /OneDrive/Bureau/INS_DATA/Webscraping_Offre_Emploi
+
+python --version
+Python 3.11.5
+
+
+1. requests : Pour envoyer des requêtes HTTP et récupérer le contenu des pages web.
+pip install requests
+print(requests.__version__)
+2.31.0
+2. BeautifulSoup : Pour analyser le contenu HTML des pages web et extraire les informations souhaitées.
+pip install beautifulsoup4
+print(bs4.__version__)
+4.12.2
+
+3. pandas : Pour manipuler et analyser les données extraites.
+pip install pandas
+
+print(pd.__version__)
+2.0.3
+4. selenium : Pour automatiser l'interaction avec les pages web, notamment pour le scraping de contenu dynamique.
+pip install selenium
+5. numpy : Pour effectuer des calculs numériques et manipuler des tableaux de données.
+pip install numpy
+print(np.__version__)
+1.24.3
+
+6. dateparser : Pour analyser les dates et les heures à partir de chaînes de caractères.
+pip install dateparser
+print(dateparser.__version__)
+1.2.0
