@@ -8,7 +8,7 @@ from datetime import datetime
 
 #CODE D'ENVOIE DU MAIL :
 
-def send_mail_success_offre(destinataires=["bakayokoabdoulaye2809@gmail.com"], cc=["abdoulayedoumbia0525@gmail.com"]):
+def send_mail_success_offre(destinataires=["moussakr@gmail.com","j.migone@stat.plan.gouv.ci","bakayokoabdoulaye2809@gmail.com"], cc=["abdoulayedoumbia0525@gmail.com"]):
     # Création de l'e-mail
     msg = MIMEMultipart()
     msg['From'] = 'doumbiaaboulaye0525@gmail.com'
@@ -19,9 +19,9 @@ def send_mail_success_offre(destinataires=["bakayokoabdoulaye2809@gmail.com"], c
     # Corps du message
     current_day = datetime.now().strftime("%Y-%m-%d")
     current_hour = datetime.now().strftime("%H")
-    message = f'''Le Lancement du JOB de scrapping des données des offres d'emploi du {current_day} à {current_hour} a reussi !.
+    message = f'''Le Scrapping des données des offres d'emploi des sites en ligne du {current_day} à {current_hour} a reussi !.
     Cordialement,
-    DOUMBIA Abdoulaye'''
+    DOUMBIA Abdoulaye, Data Scientist, CAE-INS'''
     msg.attach(MIMEText(message, 'plain'))
 
     # Pièce jointe
@@ -46,7 +46,7 @@ def send_mail_success_offre(destinataires=["bakayokoabdoulaye2809@gmail.com"], c
     # Fermeture de la connexion
     server.quit()
 
-def send_mail_error_offre(destinataires=['doumbiaaboulaye0525@gmail.com'], cc=['doumbiaaboulaye0525@gmail.com']):
+def send_mail_error_offre(destinataires=["moussakr@gmail.com","j.migone@stat.plan.gouv.ci","bakayokoabdoulaye2809@gmail.com"], cc=["abdoulayedoumbia0525@gmail.com"]):
     
     # Création de l'e-mail
     msg = MIMEMultipart()
@@ -60,7 +60,7 @@ def send_mail_error_offre(destinataires=['doumbiaaboulaye0525@gmail.com'], cc=['
     current_hour = datetime.now().strftime("%H")
     message = f'''Le Lancement du JOB de scrapping du {current_day} à {current_hour} a echoué !.
     Cordialement,
-    DOUMBIA Abdoulaye'''
+    DOUMBIA Abdoulaye, Data Scientist, CAE-INS'''
     msg.attach(MIMEText(message, 'plain'))
 
     # Pièce jointe
