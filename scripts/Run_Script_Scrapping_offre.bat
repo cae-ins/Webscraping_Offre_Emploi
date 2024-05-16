@@ -1,8 +1,8 @@
 @echo OFF
 rem Define the path to your Anaconda installation
-set CONDAPATH=C:\Users\dell\anaconda3
+set CONDA_PATH=%CONDA_EXE%
 rem Define the name of the base environment
-rem set ENVNAME=base
+set ENVNAME=WebScraping_OJA
 
 rem Activate the base environment
 call %CONDAPATH%\Scripts\activate.bat %CONDAPATH%
