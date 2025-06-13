@@ -5,8 +5,8 @@ Développer une pipeline complète de collecte, d’analyse et de visualisation 
 
 ## 📁 Arborescence du dépôt :
 
-## Webscraping_Offre_Emploi/
-## ├── automate/           # Scripts d'automatisation du scraping (parfois Selenium)
+# Webscraping_Offre_Emploi/
+# ├── automate/           # Scripts d'automatisation du scraping (parfois Selenium)
 ## ├── data/               # Données collectées (.csv, .xlsx)
 ## ├── docs/               # Documents de référence, manuels, documentation
 ## ├── environment/        # Fichiers pour la configuration d'environnement (conda, yml)
