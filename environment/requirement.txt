@@ -1,43 +1,52 @@
+#pip install time re pandas requests beautifulsoup4 selenium
+#pip install jupyter
+#jupyter notebook
 
-pip install time re pandas requests beautifulsoup4 selenium
-pip install jupyter
-jupyter notebook
+#1. time: Fournit des fonctionnalités liées à la gestion du temps dans le script.
+#2. re (module d'expressions régulières) : Utilisé pour effectuer des opérations de recherche et de correspondance de motifs dans les chaînes de texte.
+#2. pandas : Bibliothèque utilisée pour la manipulation et l'analyse des données, ici utilisée pour créer un DataFrame à partir des détails des offres d'emploi.
+#4. requests : Bibliothèque pour effectuer des requêtes HTTP.
+#5. BeautifulSoup : Bibliothèque pour extraire des informations à partir de documents HTML ou XML.
+#6. selenium : Utilisé pour l'automatisation du navigateur, ici pour extraire des informations à partir de pages web dynamiques.
+#7. tranformers : Bibliothèque utilisée pour récupérer les modèles pré-entrainés de type transformers
+#8. torch : Framework python d'entrainement de modèles
 
-1. time: Fournit des fonctionnalités liées à la gestion du temps dans le script.
-2. re (module d'expressions régulières) : Utilisé pour effectuer des opérations de recherche et de correspondance de motifs dans les chaînes de texte.
-2. pandas : Bibliothèque utilisée pour la manipulation et l'analyse des données, ici utilisée pour créer un DataFrame à partir des détails des offres d'emploi.
-4. requests : Bibliothèque pour effectuer des requêtes HTTP.
-5. BeautifulSoup : Bibliothèque pour extraire des informations à partir de documents HTML ou XML.
-6. selenium : Utilisé pour l'automatisation du navigateur, ici pour extraire des informations à partir de pages web dynamiques.
+#/OneDrive/Bureau/INS_DATA/Webscraping_Offre_Emploi
+#python --version
+#Python 3.11.5
 
-/OneDrive/Bureau/INS_DATA/Webscraping_Offre_Emploi
+requests==2.31.0
+bs4==4.12.2
+pandas==2.0.3
+selenium
+numpy==1.24.3
+dateparser==1.2.0
+tranformers==4.28.0
+torch
 
-python --version
-Python 3.11.5
 
+#1. requests : Pour envoyer des requêtes HTTP et récupérer le contenu des pages web.
+#pip install requests
+#print(requests.__version__)
+#2.31.0
+#2. BeautifulSoup : Pour analyser le contenu HTML des pages web et extraire les informations souhaitées.
+#pip install beautifulsoup4
+#print(bs4.__version__)
+#4.12.2
 
-1. requests : Pour envoyer des requêtes HTTP et récupérer le contenu des pages web.
-pip install requests
-print(requests.__version__)
-2.31.0
-2. BeautifulSoup : Pour analyser le contenu HTML des pages web et extraire les informations souhaitées.
-pip install beautifulsoup4
-print(bs4.__version__)
-4.12.2
+#3. pandas : Pour manipuler et analyser les données extraites.
+#pip install pandas
 
-3. pandas : Pour manipuler et analyser les données extraites.
-pip install pandas
+#print(pd.__version__)
+#2.0.3
+#4. selenium : Pour automatiser l'interaction avec les pages web, notamment pour le scraping de contenu dynamique.
+#pip install selenium
+#5. numpy : Pour effectuer des calculs numériques et manipuler des tableaux de données.
+#pip install numpy
+#print(np.__version__)
+#1.24.3
 
-print(pd.__version__)
-2.0.3
-4. selenium : Pour automatiser l'interaction avec les pages web, notamment pour le scraping de contenu dynamique.
-pip install selenium
-5. numpy : Pour effectuer des calculs numériques et manipuler des tableaux de données.
-pip install numpy
-print(np.__version__)
-1.24.3
-
-6. dateparser : Pour analyser les dates et les heures à partir de chaînes de caractères.
-pip install dateparser
-print(dateparser.__version__)
-1.2.0
+#6. dateparser : Pour analyser les dates et les heures à partir de chaînes de caractères.
+#pip install dateparser
+#print(dateparser.__version__)
+#1.2.0
